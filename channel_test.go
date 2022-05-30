@@ -98,3 +98,27 @@ func TestRangeChannel(t *testing.T)  {
 		println("Menerima data " + data)
 	}
 }
+
+func TestSelectChannel(t *testing.T)  {
+	channel_1 := make(chan string)
+	channel_2 := make(chan string)
+
+	go GiveMeResponse(channel_1)
+	go GiveMeResponse(channel_2)
+
+	counter := 0
+	for {
+		select {
+			case data := <-channel_1:
+				println("Menerima data dari channel_1 " + data)
+				counter++
+			case data := <-channel_2:
+				println("Menerima data dari channel_2 " + data)
+				counter++
+		}
+
+		if counter == 2 {break};
+	}
+
+	
+}
