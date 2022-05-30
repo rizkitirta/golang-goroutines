@@ -1,6 +1,7 @@
 package golanggoroutine
 
 import (
+	"fmt"
 	"testing"
 	"time"
 )
@@ -80,4 +81,20 @@ func TestBufferChannel(t *testing.T) {
 
 	time.Sleep(2 * time.Second)
 	println("channel selesai")
+}
+
+
+func TestRangeChannel(t *testing.T)  {
+	channel := make(chan string)
+
+	go func() {
+		for i := 0; i < 10; i++ {
+			channel <- fmt.Sprintf("perulangan ke %d", i)
+		}
+		close(channel)
+	}()
+
+	for data := range channel {
+		println("Menerima data " + data)
+	}
 }
