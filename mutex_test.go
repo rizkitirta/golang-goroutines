@@ -61,6 +61,8 @@ func TestRwMutex(t *testing.T) {
 	println("Total Balance", account.getBalance())
 }
 
+
+// Eaxmple DeadLock
 type Rekening struct {
 	RWMutex sync.RWMutex
 	Name    string
