@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+
 func RunAsync(group *sync.WaitGroup, number int) {
 	defer group.Done()
 	group.Add(1)
@@ -14,6 +15,7 @@ func RunAsync(group *sync.WaitGroup, number int) {
 	println("Perulangan ke-", number)
 }
 
+// Sync WaitGroup digunakan untuk menunggu sampai semua goroutine selesai
 func TestWaitGroup(t *testing.T) {
 	group := sync.WaitGroup{}
 	for i := 0; i < 100; i++ {
@@ -24,8 +26,9 @@ func TestWaitGroup(t *testing.T) {
 	println("Wait Group Done")
 }
 
-var counter int = 0
 
+// sync.Once digunakan untuk meng-execute sebuah fungsi hanya sekali
+var counter int = 0
 func OnlyOnce() {
 	counter++
 }
