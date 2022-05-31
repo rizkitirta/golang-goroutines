@@ -17,15 +17,18 @@ func TestPool(t *testing.T) {
 	pool.Put("Mangga")
 	pool.Put("Jeruk")
 
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 10; i++ {
 		go func() {
 			group.Add(1)
+
 			data := pool.Get().(string)
 			println(data)
-			pool.Put(data)
+			// pool.Put(data)
+
 			group.Done()
 		}()
 	}
 
 	group.Wait()
+	println("Pool Done")
 }
